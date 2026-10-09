@@ -6,7 +6,7 @@
     "type": "git",
     "url": "https://github.com/Riku-0801/gpu-server-observer.git"
   },
-  "version": "1.0.2",
+  "version": "1.0.3",
   "icon": "resources/icon.png",
   "publisher": "gpu-server-viewer",
   "engines": {
