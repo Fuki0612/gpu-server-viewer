@@ -240,9 +240,15 @@ export class GpuViewPanel {
             `;
         }
 
+        // The detail view already shows the temperature in its stat rows
+        const headerTemp = isDashboard ? `<span class="temp">${gpu.temperature.gpu}</span>` : '';
+
         return `
         <div class="gpu-card">
-            <h3>${gpu.name} [${gpu.index}]</h3>
+            <div class="gpu-header">
+                <h3>${gpu.name} [${gpu.index}]</h3>
+                ${headerTemp}
+            </div>
             ${details}
             <div style="margin-top: 4px;">
                 <div class="memory-text">Mem: ${gpu.memory.used} / ${gpu.memory.total}</div>
@@ -320,6 +326,8 @@ export class GpuViewPanel {
             h3 { font-size: 0.9em; margin: 0 0 4px 0; }
             .stat-row { display: flex; justify-content: space-between; font-size: 0.85em; margin-bottom: 2px; }
             .memory-text { font-size: 0.85em; }
+            .gpu-header { display: flex; justify-content: space-between; align-items: baseline; }
+            .temp { font-size: 0.85em; }
             .process-table { width: 100%; border-collapse: collapse; margin-top: 6px; font-size: 0.8em; }
             .process-table th { text-align: left; font-weight: normal; opacity: 0.7; border-bottom: 1px solid var(--vscode-widget-border); }
             .process-table td, .process-table th { padding: 1px 4px; }
