@@ -250,7 +250,27 @@ export class GpuViewPanel {
                     <div class="bar" style="width: ${memPercent}%"></div>
                 </div>
             </div>
+            ${this._getProcessTableHtml(gpu)}
         </div>
+        `;
+    }
+
+    private _getProcessTableHtml(gpu: GpuInfo): string {
+        if (gpu.processes.length === 0) {
+            return '';
+        }
+        const rows = gpu.processes.map(p => `
+            <tr>
+                <td>${escapeHtml(p.user)}</td>
+                <td class="num">${escapeHtml(p.usedMemory)}</td>
+                <td class="num">${escapeHtml(p.elapsed)}</td>
+            </tr>
+        `).join('');
+        return `
+            <table class="process-table">
+                <tr><th>User</th><th class="num">Mem</th><th class="num">Time</th></tr>
+                ${rows}
+            </table>
         `;
     }
 
@@ -300,6 +320,14 @@ export class GpuViewPanel {
             h3 { font-size: 0.9em; margin: 0 0 4px 0; }
             .stat-row { display: flex; justify-content: space-between; font-size: 0.85em; margin-bottom: 2px; }
             .memory-text { font-size: 0.85em; }
+            .process-table { width: 100%; border-collapse: collapse; margin-top: 6px; font-size: 0.8em; }
+            .process-table th { text-align: left; font-weight: normal; opacity: 0.7; border-bottom: 1px solid var(--vscode-widget-border); }
+            .process-table td, .process-table th { padding: 1px 4px; }
+            .process-table .num { text-align: right; }
         `;
     }
+}
+
+function escapeHtml(text: string): string {
+    return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }

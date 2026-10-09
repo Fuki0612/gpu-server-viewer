@@ -22,6 +22,7 @@ View detailed status (GPU utilization, temperature, memory usage) for each GPU o
 - **Multi-Server Monitoring**: Monitors hosts defined in `~/.ssh/config` or specified in settings.
 - **Local SSH Config Support**: Works seamlessly even when connected to a remote server (Remote-SSH), using your local SSH configuration.
 - **SSH Connection**: Connect to target servers via VSCode Remote SSH with a single click.
+- **Process Owners**: Shows the user, GPU memory usage, and elapsed time of each process running on a GPU.
 - **Visibility Configuration**: Easily select or hide monitored servers via GUI.
 - **Auto-Refresh**: Status is automatically updated (configurable).
 
